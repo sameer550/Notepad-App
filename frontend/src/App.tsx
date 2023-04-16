@@ -11,15 +11,23 @@ import { FaPlus } from "react-icons/fa";
 function App() {
   const [notes, setNotes] = useState<NoteModel[]>([]);
   const [showAddNoteDialog, setShowAddNoteDialog] = useState(false);
+  const [notesLoading, setNotesLoading] = useState(true);
+  const [showNotesLoadingError, setShowNotesLoadingError] = useState(false);
   const [noteToEdit, setNoteToEdit] = useState<NoteModel | null>(null);
   useEffect(() => {
     async function loadNotes() {
       try {
+        setShowNotesLoadingError(false);
+        setNotesLoading(true);
         const notes = await NotesApi.fetchNotes();
         setNotes(notes);
       } catch (error) {
         console.error(error);
+        setShowNotesLoadingError(true);
+
         alert(error);
+      } finally {
+        setNotesLoading(false);
       }
     }
     loadNotes();

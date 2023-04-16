@@ -42,7 +42,7 @@ export async function updateNote(
   noteId: string,
   note: NoteInput
 ): Promise<Note> {
-  const response = await fetchData("/api/notes" + noteId, {
+  const response = await fetchData("/api/notes/" + noteId, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
