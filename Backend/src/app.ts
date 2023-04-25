@@ -7,6 +7,7 @@ import createHttpError, { isHttpError } from "http-errors";
 import session from "express-session";
 import env from "./util/validateEnv";
 import MongoStore from "connect-mongo";
+import { requireAuth } from "./middleware/auth";
 //import { requiresAuth } from "./middleware/auth";
 
 const app = express();
@@ -29,7 +30,7 @@ app.use(
 );
 
 app.use("/api/users", userRouter);
-app.use("/api/notes", notesRouter);
+app.use("/api/notes", requireAuth, notesRouter);
 
 app.use((req, res, next) => {
   next(createHttpError(404, "Endpoint not founds please try again"));
