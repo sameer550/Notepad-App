@@ -5,7 +5,7 @@ import * as NotesApi from "../network/note_api";
 import { Alert, Button, Form, Modal } from "react-bootstrap";
 import TextInputField from "../form/textInputField";
 //import styleUtils from "../styles/utils.module.css";
-import { useState } from "react";
+//import { useState } from "react";
 //import { UnauthorizedError } from "../errors/http_errors";
 
 interface LoginModalProps {
